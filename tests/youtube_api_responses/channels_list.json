@@ -1,0 +1,49 @@
+{
+  "kind": "youtube#channelListResponse",
+  "etag": "0",
+  "pageInfo": {
+    "totalResults": 1,
+    "resultsPerPage": 5
+  },
+  "items": [
+    {
+      "kind": "youtube#channel",
+      "etag": "2",
+      "id": "1",
+      "snippet": {
+        "title": "ChannelName",
+        "description": "SomeDescription",
+        "customUrl": "@channelname",
+        "publishedAt": "2012-07-13T09:48:44Z",
+        "thumbnails": {
+          "default": {
+            "url": "https://someurl.example.com/default",
+            "width": 88,
+            "height": 88
+          },
+          "medium": {
+            "url": "https://someurl.example.com/medium",
+            "width": 240,
+            "height": 240
+          },
+          "high": {
+            "url": "https://someurl.example.com/high",
+            "width": 800,
+            "height": 800
+          }
+        },
+        "localized": {
+          "title": "LocalizedChannelName",
+          "description": "LocalizedSomeDescription"
+        },
+        "country": "RU"
+      },
+      "statistics": {
+        "viewCount": "100",
+        "subscriberCount": "200",
+        "hiddenSubscriberCount": false,
+        "videoCount": "5"
+      }
+    }
+  ]
+}
