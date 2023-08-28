@@ -35,6 +35,34 @@ class Channel:
         self._channel_info_raw = None
         self._channel_id = channel_id
 
+    def __str__(self):
+        return f"{self.title} ({self.url})"
+
+    def __add__(self, other):
+        if type(other) is Channel:
+            return self.subscriber_count + other.subscriber_count
+        raise TypeError(f"Second operand must be a {self.__class__.__name__}")
+
+    def __sub__(self, other):
+        if type(other) is Channel:
+            return self.subscriber_count - other.subscriber_count
+        raise TypeError(f"Second operand must be a {self.__class__.__name__}")
+
+    def __eq__(self, other):
+        if type(other) is Channel:
+            return self.subscriber_count == other.subscriber_count
+        raise TypeError(f"Second operand must be a {self.__class__.__name__}")
+
+    def __le__(self, other):
+        if type(other) is Channel:
+            return self.subscriber_count <= other.subscriber_count
+        raise TypeError(f"Second operand must be a {self.__class__.__name__}")
+
+    def __lt__(self, other):
+        if type(other) is Channel:
+            return self.subscriber_count < other.subscriber_count
+        raise TypeError(f"Second operand must be a {self.__class__.__name__}")
+
     def print_info(self) -> None:
         """Printing channel info"""
 
@@ -73,6 +101,11 @@ class Channel:
     def video_count(self):
         """ video count """
         return int(self.channel_info["statistics"]["videoCount"])
+
+    @property
+    def subscriber_count(self):
+        """ video count """
+        return int(self.channel_info["statistics"]["subscriberCount"])
 
     def to_json(self, filename):
         """

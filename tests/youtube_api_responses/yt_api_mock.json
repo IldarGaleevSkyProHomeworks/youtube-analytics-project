@@ -126,6 +126,63 @@
                         ]
                     }
                 }
+            },
+            {
+                "query": "id=FAKE_CHANNEL_3_ID&part=snippet%2Cstatistics&alt=json",
+                "response": {
+                    "headers": {
+                        "status": "200"
+                    },
+                    "body": {
+                        "kind": "youtube#channelListResponse",
+                        "etag": "0",
+                        "pageInfo": {
+                            "totalResults": 1,
+                            "resultsPerPage": 5
+                        },
+                        "items": [
+                            {
+                                "kind": "youtube#channel",
+                                "etag": "2",
+                                "id": "1",
+                                "snippet": {
+                                    "title": "Channel3Name",
+                                    "description": "SomeDescription",
+                                    "customUrl": "@channel3name",
+                                    "publishedAt": "2012-07-13T09:48:44Z",
+                                    "thumbnails": {
+                                        "default": {
+                                            "url": "https://someurl.example.com/default",
+                                            "width": 88,
+                                            "height": 88
+                                        },
+                                        "medium": {
+                                            "url": "https://someurl.example.com/medium",
+                                            "width": 240,
+                                            "height": 240
+                                        },
+                                        "high": {
+                                            "url": "https://someurl.example.com/high",
+                                            "width": 800,
+                                            "height": 800
+                                        }
+                                    },
+                                    "localized": {
+                                        "title": "LocalizedChannelName",
+                                        "description": "LocalizedSomeDescription"
+                                    },
+                                    "country": "RU"
+                                },
+                                "statistics": {
+                                    "viewCount": "1000",
+                                    "subscriberCount": "500",
+                                    "hiddenSubscriberCount": false,
+                                    "videoCount": "10"
+                                }
+                            }
+                        ]
+                    }
+                }
             }
         ]
     }
