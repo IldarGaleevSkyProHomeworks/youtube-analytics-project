@@ -2,7 +2,7 @@ import json
 import os.path
 import shutil
 
-from googleapiclient.http import HttpMock
+from tests.helpers.http_mock_from_file import HttpMockFromFile
 from src.channel import Channel
 from pytest import fixture
 
@@ -11,12 +11,12 @@ import src.helpers
 FAKE_FS_PATH = "fakefs/"
 TEST_DATA_DIR = "tests/youtube_api_responses"
 
-CHANNEL_LIST_RESPONSE_FILE = f'{TEST_DATA_DIR}/channels_list.json'
+CHANNEL_LIST_RESPONSE_FILE = f'{TEST_DATA_DIR}/yt_api_mock.json'
 
 
 @fixture()
 def google_api_mock_Channel():
-    http = HttpMock(CHANNEL_LIST_RESPONSE_FILE, {'status': '200'})
+    http = HttpMockFromFile(CHANNEL_LIST_RESPONSE_FILE)
     # Channel.api_key = "fake_api_key"
     Channel.http_lib = http
     Channel.get_service(True)
@@ -33,39 +33,32 @@ def fake_fs():
     yield FAKE_FS_PATH
 
 
-@fixture()
-def youtube_api_responses_channels_list():
-    with open(CHANNEL_LIST_RESPONSE_FILE) as file:
-        return json.load(file)
-
-
-def test_print_info(google_api_mock_Channel, youtube_api_responses_channels_list, mocker):
+def test_print_info(google_api_mock_Channel, mocker):
     mocker.patch('src.helpers.printj')
-    ch = google_api_mock_Channel("123")
+    ch = google_api_mock_Channel("FAKE_CHANNEL_ID_WITH_SHORT_DATA")
     ch.print_info()
-    src.helpers.printj.assert_called_once_with(youtube_api_responses_channels_list)
+    src.helpers.printj.assert_called_once_with({"data": "test_response"})
 
 
 def test_title_prop(google_api_mock_Channel):
-    channel1 = google_api_mock_Channel('')
+    channel1 = google_api_mock_Channel('FAKE_CHANNEL_1_ID')
     assert channel1.title == 'ChannelName'
 
 
 def test_video_count_prop(google_api_mock_Channel):
-    channel1 = google_api_mock_Channel('')
+    channel1 = google_api_mock_Channel('FAKE_CHANNEL_1_ID')
     assert channel1.video_count == 5
 
 
 def test_video_url_prop(google_api_mock_Channel):
-    channel1 = google_api_mock_Channel('FAKE_CHANNEL_ID')
+    channel1 = google_api_mock_Channel('FAKE_CHANNEL_1_ID')
 
-    assert channel1.url == f'{channel1.channel_url}/FAKE_CHANNEL_ID'
+    assert channel1.url == f'{channel1.channel_url}/FAKE_CHANNEL_1_ID'
 
 
 def test_video_to_json(google_api_mock_Channel, fake_fs):
-
     file_path = os.path.join(fake_fs, 'channel.json')
-    channel1 = google_api_mock_Channel('')
+    channel1 = google_api_mock_Channel('FAKE_CHANNEL_1_ID')
     channel1.to_json(file_path)
 
     assert os.path.exists(file_path)
