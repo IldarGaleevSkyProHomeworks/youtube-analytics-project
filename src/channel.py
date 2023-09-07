@@ -1,91 +1,67 @@
 import json
-import os
 import src.helpers
-from googleapiclient.discovery import build
+from src.youtube_api_object import YoutubeAPIObject
 
 
-class Channel:
+class Channel(YoutubeAPIObject):
     """Youtube channel"""
-    http_lib = None
-    api_key: str = os.getenv('YT_API_KEY')
-    base_url = r'https://www.youtube.com'
-    channel_url = f'{base_url}/channel'
-    _youtube = None
+    channel_url = f'{YoutubeAPIObject.base_url}/channel'
 
-    @classmethod
-    def get_service(cls, reload=False):
-        """
-        returns API service object
-        :param reload: if True - rebuild API service object
-        """
-        if cls._youtube is None or reload:
-            cls._youtube = build(
-                serviceName='youtube',
-                version='v3',
-                developerKey=cls.api_key,
-                http=cls.http_lib
-            )
-        return cls._youtube
+    _PART_CHANNEL_INFO = "Channel"
 
     def __init__(self, channel_id: str) -> None:
         """
         :param channel_id: channel id
         """
 
-        self._channel_info_raw = None
+        super().__init__()
         self._channel_id = channel_id
+
+        self._set_request_obj(
+            Channel._PART_CHANNEL_INFO,
+            YoutubeAPIObject.get_service().channels().list(
+                id=self._channel_id,
+                part='snippet,statistics'
+            )
+        )
 
     def __str__(self):
         return f"{self.title} ({self.url})"
 
     def __add__(self, other):
-        if type(other) is Channel:
+        if isinstance(other, self.__class__):
             return self.subscriber_count + other.subscriber_count
         raise TypeError(f"Second operand must be a {self.__class__.__name__}")
 
     def __sub__(self, other):
-        if type(other) is Channel:
+        if isinstance(other, self.__class__):
             return self.subscriber_count - other.subscriber_count
         raise TypeError(f"Second operand must be a {self.__class__.__name__}")
 
     def __eq__(self, other):
-        if type(other) is Channel:
+        if isinstance(other, self.__class__):
             return self.subscriber_count == other.subscriber_count
         raise TypeError(f"Second operand must be a {self.__class__.__name__}")
 
     def __le__(self, other):
-        if type(other) is Channel:
+        if isinstance(other, self.__class__):
             return self.subscriber_count <= other.subscriber_count
         raise TypeError(f"Second operand must be a {self.__class__.__name__}")
 
     def __lt__(self, other):
-        if type(other) is Channel:
+        if isinstance(other, self.__class__):
             return self.subscriber_count < other.subscriber_count
         raise TypeError(f"Second operand must be a {self.__class__.__name__}")
 
     def print_info(self) -> None:
         """Printing channel info"""
 
-        src.helpers.printj(self.channel_info_raw)
-
-    def update_channel_info(self):
-        """ force update channel info """
-        self._channel_info_raw = Channel.get_service().channels().list(
-            id=self._channel_id,
-            part='snippet,statistics'
-        ).execute()
-
-    @property
-    def channel_info_raw(self):
-        """ full response json """
-        if self._channel_info_raw is None:
-            self.update_channel_info()
-        return self._channel_info_raw
+        src.helpers.printj(self._api_object_info_raw(Channel._PART_CHANNEL_INFO))
 
     @property
     def channel_info(self):
         """ channel info """
-        return self.channel_info_raw["items"][0]
+        return self._api_object_info_raw(Channel._PART_CHANNEL_INFO)["items"][0]
 
     @property
     def title(self):
