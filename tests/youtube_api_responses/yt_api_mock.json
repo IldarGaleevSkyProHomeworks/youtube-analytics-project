@@ -185,5 +185,174 @@
                 }
             }
         ]
+    },
+    {
+        "endpoint": "/youtube/v3/videos",
+        "GET": [
+            {
+                "query": "id=FAKE_VIDEO_1_ID&part=snippet%2Cstatistics&alt=json",
+                "response": {
+                    "headers": {
+                        "status": "200"
+                    },
+                    "body": {
+                        "kind": "youtube#videoListResponse",
+                        "etag": "_QnSBlfRW-Kmo8Lzg7Ic1YIDv6g",
+                        "items": [
+                            {
+                                "kind": "youtube#video",
+                                "etag": "ETAG1",
+                                "id": "FAKE_VIDEO_1_ID",
+                                "snippet": {
+                                    "publishedAt": "2013-11-13T07:02:16Z",
+                                    "channelId": "FAKE_CHANNEL_ID_1",
+                                    "title": "Video title",
+                                    "description": "Video description",
+                                    "thumbnails": {
+                                        "default": {
+                                            "url": "https://someurl.example.com/default.jpg",
+                                            "width": 120,
+                                            "height": 90
+                                        },
+                                        "medium": {
+                                            "url": "https://someurl.example.com/mqdefault.jpg",
+                                            "width": 320,
+                                            "height": 180
+                                        },
+                                        "high": {
+                                            "url": "https://someurl.example.com/hqdefault.jpg",
+                                            "width": 480,
+                                            "height": 360
+                                        },
+                                        "standard": {
+                                            "url": "https://someurl.example.com/sddefault.jpg",
+                                            "width": 640,
+                                            "height": 480
+                                        },
+                                        "maxres": {
+                                            "url": "https://someurl.example.com/maxresdefault.jpg",
+                                            "width": 1280,
+                                            "height": 720
+                                        }
+                                    },
+                                    "channelTitle": "Channel title",
+                                    "tags": [
+                                        "videotag1",
+                                        "videotag2"
+                                    ],
+                                    "categoryId": "28",
+                                    "liveBroadcastContent": "none",
+                                    "localized": {
+                                        "title": "Video title localized",
+                                        "description": "Video description localized"
+                                    }
+                                },
+                                "statistics": {
+                                    "viewCount": "100",
+                                    "likeCount": "10",
+                                    "favoriteCount": "0",
+                                    "commentCount": "5"
+                                }
+                            }
+                        ],
+                        "pageInfo": {
+                            "totalResults": 1,
+                            "resultsPerPage": 1
+                        }
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "endpoint": "/youtube/v3/playlistItems",
+        "GET": [
+            {
+                "query": "playlistId=FAKE_PLAYLIST_1_ID&videoId=FAKE_VIDEO_1_ID&part=contentDetails&maxResults=1&alt=json",
+                "response": {
+                    "headers": {
+                        "status": "200"
+                    },
+                    "body": {
+                        "kind": "youtube#playlistItemListResponse",
+                        "etag": "ETAG1",
+                        "items": [
+                            {
+                                "kind": "youtube#playlistItem",
+                                "etag": "ETAG2",
+                                "id": "PLAYLIST_ITEM_ID",
+                                "snippet": {
+                                    "publishedAt": "2022-10-21T15:01:34Z",
+                                    "channelId": "FAKE_CHANNEL_1_ID",
+                                    "title": "Video title",
+                                    "description": "Video description",
+                                    "thumbnails": {
+                                        "default": {
+                                            "url": "https://someurl.example.com/default.jpg",
+                                            "width": 120,
+                                            "height": 90
+                                        },
+                                        "medium": {
+                                            "url": "https://someurl.example.com/mqdefault.jpg",
+                                            "width": 320,
+                                            "height": 180
+                                        },
+                                        "high": {
+                                            "url": "https://someurl.example.com/hqdefault.jpg",
+                                            "width": 480,
+                                            "height": 360
+                                        },
+                                        "standard": {
+                                            "url": "https://someurl.example.com/sddefault.jpg",
+                                            "width": 640,
+                                            "height": 480
+                                        },
+                                        "maxres": {
+                                            "url": "https://someurl.example.com/maxresdefault.jpg",
+                                            "width": 1280,
+                                            "height": 720
+                                        }
+                                    },
+                                    "channelTitle": "Channel title",
+                                    "playlistId": "FAKE_PLAYLIST_1_ID",
+                                    "position": 0,
+                                    "resourceId": {
+                                        "kind": "youtube#video",
+                                        "videoId": "FAKE_VIDEO_1_ID"
+                                    },
+                                    "videoOwnerChannelTitle": "Owner channel name",
+                                    "videoOwnerChannelId": "FAKE_CHANNEL_1_ID"
+                                },
+                                "contentDetails": {
+                                    "videoId": "FAKE_VIDEO_1_ID",
+                                    "videoPublishedAt": "2022-10-21T15:40:32Z"
+                                }
+                            }
+                        ],
+                        "pageInfo": {
+                            "totalResults": 1,
+                            "resultsPerPage": 5
+                        }
+                    }
+                }
+            },
+            {
+                "query": "playlistId=FAKE_PLAYLIST_1_ID&videoId=FAKE_VIDEO_2_ID&part=contentDetails&maxResults=1&alt=json",
+                "response": {
+                    "headers": {
+                        "status": "200"
+                    },
+                    "body": {
+                        "kind": "youtube#playlistItemListResponse",
+                        "etag": "ETAG1",
+                        "items": [],
+                        "pageInfo": {
+                            "totalResults": 1,
+                            "resultsPerPage": 5
+                        }
+                    }
+                }
+            }
+        ]
     }
 ]
