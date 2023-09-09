@@ -17,9 +17,16 @@ class HttpMockFromFile:
         self.method = None
         self.body = None
         self.headers = None
+        self.request_list = []
 
     def get_response(self, path, query, method):
         method = method.upper()
+        self.request_list.append({
+            "method": method,
+            "path": path,
+            "query": query
+        })
+
         path_results = [dt[method] for dt in self.data if dt["endpoint"] == path and dt[method]][0]
         if path_results:
             for response in path_results:
