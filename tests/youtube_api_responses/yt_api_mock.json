@@ -190,7 +190,7 @@
         "endpoint": "/youtube/v3/videos",
         "GET": [
             {
-                "query": "id=FAKE_VIDEO_1_ID&part=snippet%2Cstatistics&alt=json",
+                "query": "id=FAKE_VIDEO_1_ID&part=snippet%2Cstatistics%2CcontentDetails&alt=json",
                 "response": {
                     "headers": {
                         "status": "200"
@@ -206,8 +206,8 @@
                                 "snippet": {
                                     "publishedAt": "2013-11-13T07:02:16Z",
                                     "channelId": "FAKE_CHANNEL_ID_1",
-                                    "title": "Video title",
-                                    "description": "Video description",
+                                    "title": "Video1 title",
+                                    "description": "Video1 description",
                                     "thumbnails": {
                                         "default": {
                                             "url": "https://someurl.example.com/default.jpg",
@@ -243,13 +243,186 @@
                                     "categoryId": "28",
                                     "liveBroadcastContent": "none",
                                     "localized": {
-                                        "title": "Video title localized",
-                                        "description": "Video description localized"
+                                        "title": "Video1 title localized",
+                                        "description": "Video1 description localized"
                                     }
+                                },
+                                "contentDetails": {
+                                    "duration": "PT56M24S",
+                                    "dimension": "2d",
+                                    "definition": "hd",
+                                    "caption": "false",
+                                    "licensedContent": false,
+                                    "contentRating": {},
+                                    "projection": "rectangular"
                                 },
                                 "statistics": {
                                     "viewCount": "100",
                                     "likeCount": "10",
+                                    "favoriteCount": "0",
+                                    "commentCount": "5"
+                                }
+                            }
+                        ],
+                        "pageInfo": {
+                            "totalResults": 1,
+                            "resultsPerPage": 1
+                        }
+                    }
+                }
+            },
+            {
+                "query": "id=FAKE_VIDEO_2_ID&part=snippet%2Cstatistics%2CcontentDetails&alt=json",
+                "response": {
+                    "headers": {
+                        "status": "200"
+                    },
+                    "body": {
+                        "kind": "youtube#videoListResponse",
+                        "etag": "_QnSBlfRW-Kmo8Lzg7Ic1YIDv6g",
+                        "items": [
+                            {
+                                "kind": "youtube#video",
+                                "etag": "ETAG1",
+                                "id": "FAKE_VIDEO_2_ID",
+                                "snippet": {
+                                    "publishedAt": "2013-11-13T07:02:16Z",
+                                    "channelId": "FAKE_CHANNEL_ID_1",
+                                    "title": "Video2 title",
+                                    "description": "Video2 description",
+                                    "thumbnails": {
+                                        "default": {
+                                            "url": "https://someurl.example.com/default.jpg",
+                                            "width": 120,
+                                            "height": 90
+                                        },
+                                        "medium": {
+                                            "url": "https://someurl.example.com/mqdefault.jpg",
+                                            "width": 320,
+                                            "height": 180
+                                        },
+                                        "high": {
+                                            "url": "https://someurl.example.com/hqdefault.jpg",
+                                            "width": 480,
+                                            "height": 360
+                                        },
+                                        "standard": {
+                                            "url": "https://someurl.example.com/sddefault.jpg",
+                                            "width": 640,
+                                            "height": 480
+                                        },
+                                        "maxres": {
+                                            "url": "https://someurl.example.com/maxresdefault.jpg",
+                                            "width": 1280,
+                                            "height": 720
+                                        }
+                                    },
+                                    "channelTitle": "Channel title",
+                                    "tags": [
+                                        "videotag1",
+                                        "videotag2"
+                                    ],
+                                    "categoryId": "28",
+                                    "liveBroadcastContent": "none",
+                                    "localized": {
+                                        "title": "Video2 title localized",
+                                        "description": "Video2 description localized"
+                                    }
+                                },
+                                "contentDetails": {
+                                    "duration": "PT10M0S",
+                                    "dimension": "2d",
+                                    "definition": "hd",
+                                    "caption": "false",
+                                    "licensedContent": false,
+                                    "contentRating": {},
+                                    "projection": "rectangular"
+                                },
+                                "statistics": {
+                                    "viewCount": "30",
+                                    "likeCount": "2",
+                                    "favoriteCount": "0",
+                                    "commentCount": "5"
+                                }
+                            }
+                        ],
+                        "pageInfo": {
+                            "totalResults": 1,
+                            "resultsPerPage": 1
+                        }
+                    }
+                }
+            },
+            {
+                "query": "id=FAKE_VIDEO_3_ID&part=snippet%2Cstatistics%2CcontentDetails&alt=json",
+                "response": {
+                    "headers": {
+                        "status": "200"
+                    },
+                    "body": {
+                        "kind": "youtube#videoListResponse",
+                        "etag": "_QnSBlfRW-Kmo8Lzg7Ic1YIDv6g",
+                        "items": [
+                            {
+                                "kind": "youtube#video",
+                                "etag": "ETAG1",
+                                "id": "FAKE_VIDEO_3_ID",
+                                "snippet": {
+                                    "publishedAt": "2013-11-13T07:02:16Z",
+                                    "channelId": "FAKE_CHANNEL_ID_1",
+                                    "title": "Video3 title",
+                                    "description": "Video3 description",
+                                    "thumbnails": {
+                                        "default": {
+                                            "url": "https://someurl.example.com/default.jpg",
+                                            "width": 120,
+                                            "height": 90
+                                        },
+                                        "medium": {
+                                            "url": "https://someurl.example.com/mqdefault.jpg",
+                                            "width": 320,
+                                            "height": 180
+                                        },
+                                        "high": {
+                                            "url": "https://someurl.example.com/hqdefault.jpg",
+                                            "width": 480,
+                                            "height": 360
+                                        },
+                                        "standard": {
+                                            "url": "https://someurl.example.com/sddefault.jpg",
+                                            "width": 640,
+                                            "height": 480
+                                        },
+                                        "maxres": {
+                                            "url": "https://someurl.example.com/maxresdefault.jpg",
+                                            "width": 1280,
+                                            "height": 720
+                                        }
+                                    },
+                                    "channelTitle": "Channel title",
+                                    "tags": [
+                                        "videotag1",
+                                        "videotag2"
+                                    ],
+                                    "categoryId": "28",
+                                    "liveBroadcastContent": "none",
+                                    "localized": {
+                                        "title": "Video3 title localized",
+                                        "description": "Video3 description localized"
+                                    }
+                                },
+                                "contentDetails": {
+                                    "duration": "PT20M0S",
+                                    "dimension": "2d",
+                                    "definition": "hd",
+                                    "caption": "false",
+                                    "licensedContent": false,
+                                    "contentRating": {},
+                                    "projection": "rectangular"
+                                },
+                                "statistics": {
+                                    "viewCount": "60",
+                                    "likeCount": "1",
                                     "favoriteCount": "0",
                                     "commentCount": "5"
                                 }
@@ -350,6 +523,246 @@
                             "totalResults": 1,
                             "resultsPerPage": 5
                         }
+                    }
+                }
+            },
+            {
+                "query": "playlistId=FAKE_PLAYLIST_1_ID&part=snippet&alt=json",
+                "response": {
+                    "headers": {
+                        "status": "200"
+                    },
+                    "body": {
+                        "kind": "youtube#playlistItemListResponse",
+                        "etag": "ETAG1",
+                        "items": [
+                            {
+                                "kind": "youtube#playlistItem",
+                                "etag": "ETAG2",
+                                "id": "PLAYLIST_ITEM_ID",
+                                "snippet": {
+                                    "publishedAt": "2022-10-21T15:01:34Z",
+                                    "channelId": "FAKE_CHANNEL_1_ID",
+                                    "title": "Video1 title",
+                                    "description": "Video1 description",
+                                    "thumbnails": {
+                                        "default": {
+                                            "url": "https://someurl.example.com/default.jpg",
+                                            "width": 120,
+                                            "height": 90
+                                        },
+                                        "medium": {
+                                            "url": "https://someurl.example.com/mqdefault.jpg",
+                                            "width": 320,
+                                            "height": 180
+                                        },
+                                        "high": {
+                                            "url": "https://someurl.example.com/hqdefault.jpg",
+                                            "width": 480,
+                                            "height": 360
+                                        },
+                                        "standard": {
+                                            "url": "https://someurl.example.com/sddefault.jpg",
+                                            "width": 640,
+                                            "height": 480
+                                        },
+                                        "maxres": {
+                                            "url": "https://someurl.example.com/maxresdefault.jpg",
+                                            "width": 1280,
+                                            "height": 720
+                                        }
+                                    },
+                                    "channelTitle": "Channel title",
+                                    "playlistId": "FAKE_PLAYLIST_1_ID",
+                                    "position": 0,
+                                    "resourceId": {
+                                        "kind": "youtube#video",
+                                        "videoId": "FAKE_VIDEO_1_ID"
+                                    },
+                                    "videoOwnerChannelTitle": "Owner channel name",
+                                    "videoOwnerChannelId": "FAKE_CHANNEL_1_ID"
+                                },
+                                "contentDetails": {
+                                    "videoId": "FAKE_VIDEO_1_ID",
+                                    "videoPublishedAt": "2022-10-21T15:40:32Z"
+                                }
+                            },
+                            {
+                                "kind": "youtube#playlistItem",
+                                "etag": "ETAG2",
+                                "id": "PLAYLIST_ITEM_ID",
+                                "snippet": {
+                                    "publishedAt": "2022-10-21T15:01:34Z",
+                                    "channelId": "FAKE_CHANNEL_1_ID",
+                                    "title": "Video2 title",
+                                    "description": "Video2 description",
+                                    "thumbnails": {
+                                        "default": {
+                                            "url": "https://someurl.example.com/default.jpg",
+                                            "width": 120,
+                                            "height": 90
+                                        },
+                                        "medium": {
+                                            "url": "https://someurl.example.com/mqdefault.jpg",
+                                            "width": 320,
+                                            "height": 180
+                                        },
+                                        "high": {
+                                            "url": "https://someurl.example.com/hqdefault.jpg",
+                                            "width": 480,
+                                            "height": 360
+                                        },
+                                        "standard": {
+                                            "url": "https://someurl.example.com/sddefault.jpg",
+                                            "width": 640,
+                                            "height": 480
+                                        },
+                                        "maxres": {
+                                            "url": "https://someurl.example.com/maxresdefault.jpg",
+                                            "width": 1280,
+                                            "height": 720
+                                        }
+                                    },
+                                    "channelTitle": "Channel title",
+                                    "playlistId": "FAKE_PLAYLIST_1_ID",
+                                    "position": 0,
+                                    "resourceId": {
+                                        "kind": "youtube#video",
+                                        "videoId": "FAKE_VIDEO_2_ID"
+                                    },
+                                    "videoOwnerChannelTitle": "Owner channel name",
+                                    "videoOwnerChannelId": "FAKE_CHANNEL_1_ID"
+                                },
+                                "contentDetails": {
+                                    "videoId": "FAKE_VIDEO_2_ID",
+                                    "videoPublishedAt": "2022-10-21T15:40:32Z"
+                                }
+                            },
+                            {
+                                "kind": "youtube#playlistItem",
+                                "etag": "ETAG2",
+                                "id": "PLAYLIST_ITEM_ID",
+                                "snippet": {
+                                    "publishedAt": "2022-10-21T15:01:34Z",
+                                    "channelId": "FAKE_CHANNEL_1_ID",
+                                    "title": "Video3 title",
+                                    "description": "Video3 description",
+                                    "thumbnails": {
+                                        "default": {
+                                            "url": "https://someurl.example.com/default.jpg",
+                                            "width": 120,
+                                            "height": 90
+                                        },
+                                        "medium": {
+                                            "url": "https://someurl.example.com/mqdefault.jpg",
+                                            "width": 320,
+                                            "height": 180
+                                        },
+                                        "high": {
+                                            "url": "https://someurl.example.com/hqdefault.jpg",
+                                            "width": 480,
+                                            "height": 360
+                                        },
+                                        "standard": {
+                                            "url": "https://someurl.example.com/sddefault.jpg",
+                                            "width": 640,
+                                            "height": 480
+                                        },
+                                        "maxres": {
+                                            "url": "https://someurl.example.com/maxresdefault.jpg",
+                                            "width": 1280,
+                                            "height": 720
+                                        }
+                                    },
+                                    "channelTitle": "Channel title",
+                                    "playlistId": "FAKE_PLAYLIST_1_ID",
+                                    "position": 0,
+                                    "resourceId": {
+                                        "kind": "youtube#video",
+                                        "videoId": "FAKE_VIDEO_3_ID"
+                                    },
+                                    "videoOwnerChannelTitle": "Owner channel name",
+                                    "videoOwnerChannelId": "FAKE_CHANNEL_1_ID"
+                                },
+                                "contentDetails": {
+                                    "videoId": "FAKE_VIDEO_3_ID",
+                                    "videoPublishedAt": "2022-10-21T15:40:32Z"
+                                }
+                            }
+                        ],
+                        "pageInfo": {
+                            "totalResults": 1,
+                            "resultsPerPage": 5
+                        }
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "endpoint": "/youtube/v3/playlists",
+        "GET": [
+            {
+                "query": "id=FAKE_PLAYLIST_1_ID&part=snippet&alt=json",
+                "response": {
+                    "headers": {
+                        "status": "200"
+                    },
+                    "body": {
+                        "kind": "youtube#playlistListResponse",
+                        "etag": "ETAG1",
+                        "pageInfo": {
+                            "totalResults": 1,
+                            "resultsPerPage": 5
+                        },
+                        "items": [
+                            {
+                                "kind": "youtube#playlist",
+                                "etag": "ETAG2",
+                                "id": "FAKE_PLAYLIST_1_ID",
+                                "snippet": {
+                                    "publishedAt": "2016-04-04T09:35:45Z",
+                                    "channelId": "FAKE_CHANNEL_1_ID",
+                                    "title": "Playlist1 title",
+                                    "description": "Playlist1 description",
+                                    "thumbnails": {
+                                        "default": {
+                                            "url": "https://someurl.example.com/default.jpg",
+                                            "width": 120,
+                                            "height": 90
+                                        },
+                                        "medium": {
+                                            "url": "https://someurl.example.com/mqdefault.jpg",
+                                            "width": 320,
+                                            "height": 180
+                                        },
+                                        "high": {
+                                            "url": "https://someurl.example.com/hqdefault.jpg",
+                                            "width": 480,
+                                            "height": 360
+                                        },
+                                        "standard": {
+                                            "url": "https://someurl.example.com/sddefault.jpg",
+                                            "width": 640,
+                                            "height": 480
+                                        },
+                                        "maxres": {
+                                            "url": "https://someurl.example.com/maxresdefault.jpg",
+                                            "width": 1280,
+                                            "height": 720
+                                        }
+                                    },
+                                    "channelTitle": "Channel title",
+                                    "localized": {
+                                        "title": "Localized Playlist1 title",
+                                        "description": "Localized Playlist1 description"
+                                    }
+                                },
+                                "contentDetails": {
+                                    "itemCount": 2
+                                }
+                            }
+                        ]
                     }
                 }
             }

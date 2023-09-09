@@ -6,6 +6,7 @@ class YoutubeAPIObject:
     http_lib = None
     api_key: str = os.getenv('YT_API_KEY')
     base_url = r'https://www.youtube.com'
+    base_url_h1 = r'https://youtu.be'
     _youtube = None
 
     @classmethod

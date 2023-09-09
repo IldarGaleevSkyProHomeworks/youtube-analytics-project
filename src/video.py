@@ -1,8 +1,11 @@
+from datetime import timedelta
+
 from src.youtube_api_object import YoutubeAPIObject
+import isodate
 
 
 class Video(YoutubeAPIObject):
-    video_url = f'{YoutubeAPIObject.base_url}/watch'
+    video_url = YoutubeAPIObject.base_url_h1
 
     _PART_VIDEO_INFO = "Video"
 
@@ -15,7 +18,7 @@ class Video(YoutubeAPIObject):
             Video._PART_VIDEO_INFO,
             YoutubeAPIObject.get_service().videos().list(
                 id=self._video_id,
-                part='snippet,statistics'
+                part='snippet,statistics,contentDetails'
             )
         )
 
@@ -49,13 +52,20 @@ class Video(YoutubeAPIObject):
     @property
     def url(self):
         """ video url """
-        return f'{Video.video_url}?v={self._video_id}'
+        return f'{Video.video_url}/{self._video_id}'
+
+    @property
+    def video_duration(self) -> timedelta:
+        """ video duration """
+        duration_iso_str = self.video_info["contentDetails"]["duration"]
+        # TODO: non cached
+        return isodate.parse_duration(duration_iso_str)
 
 
 class PLVideo(Video):
     _PART_PLVIDEO_INFO = "PlaylistItem"
 
-    def __init__(self, video_id, playlist_id):
+    def __init__(self, video_id, playlist_id, check_playlist_item=True):
         super().__init__(video_id=video_id)
 
         self._playlist_id = playlist_id
@@ -70,9 +80,10 @@ class PLVideo(Video):
             )
         )
 
-        playlist_info = self.playlist_item_info
-        if not playlist_info:
-            raise Exception("The playlist does not contain this video")
+        if check_playlist_item:
+            playlist_info = self.playlist_item_info
+            if not playlist_info:
+                raise Exception("The playlist does not contain this video")
 
     @property
     def playlist_id(self):
@@ -86,4 +97,3 @@ class PLVideo(Video):
         if len(items) == 0:
             return None
         return items[0]
-
