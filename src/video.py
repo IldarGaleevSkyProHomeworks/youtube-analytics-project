@@ -1,6 +1,6 @@
 from datetime import timedelta
 
-from src.youtube_api_object import YoutubeAPIObject
+from src.youtube_api_object import YoutubeAPIObject, YoutubeDummyObject
 import isodate
 
 
@@ -37,17 +37,20 @@ class Video(YoutubeAPIObject):
     @property
     def title(self):
         """ video title """
-        return self.video_info["snippet"]["title"]
+        data = self.video_info["snippet"]["title"]
+        return None if isinstance(data, YoutubeDummyObject) else data
 
     @property
     def view_count(self):
         """ view count """
-        return int(self.video_info["statistics"]["viewCount"])
+        data = self.video_info["statistics"]["viewCount"]
+        return None if isinstance(data, YoutubeDummyObject) else int(data)
 
     @property
     def like_count(self):
         """ likes count """
-        return int(self.video_info["statistics"]["likeCount"])
+        data = self.video_info["statistics"]["likeCount"]
+        return None if isinstance(data, YoutubeDummyObject) else int(data)
 
     @property
     def url(self):
@@ -59,7 +62,7 @@ class Video(YoutubeAPIObject):
         """ video duration """
         duration_iso_str = self.video_info["contentDetails"]["duration"]
         # TODO: non cached
-        return isodate.parse_duration(duration_iso_str)
+        return None if isinstance(duration_iso_str, YoutubeDummyObject) else isodate.parse_duration(duration_iso_str)
 
 
 class PLVideo(Video):

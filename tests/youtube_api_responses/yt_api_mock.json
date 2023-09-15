@@ -9,7 +9,7 @@
                         "status": "200"
                     },
                     "body": {
-                        "data": "test_response"
+                        "items": ["test_response"]
                     }
                 }
             },
@@ -431,6 +431,23 @@
                         "pageInfo": {
                             "totalResults": 1,
                             "resultsPerPage": 1
+                        }
+                    }
+                }
+            },
+            {
+                "query": "id=FAKE_VIDEO_UNKNOWN_ID&part=snippet%2Cstatistics%2CcontentDetails&alt=json",
+                "response": {
+                    "headers": {
+                        "status": "200"
+                    },
+                    "body": {
+                        "kind": "youtube#videoListResponse",
+                        "etag": "_QnSBlfRW-Kmo8Lzg7Ic1YIDv6g",
+                        "items": [],
+                        "pageInfo": {
+                            "totalResults": 0,
+                            "resultsPerPage": 0
                         }
                     }
                 }

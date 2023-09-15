@@ -10,7 +10,7 @@ def test_print_info(google_api_mock_http, mocker):
     mocker.patch('src.helpers.printj')
     ch = Channel("FAKE_CHANNEL_ID_WITH_SHORT_DATA")
     ch.print_info()
-    src.helpers.printj.assert_called_once_with({"data": "test_response"})
+    src.helpers.printj.assert_called_once_with({"items": ["test_response"]})
 
 
 def test_title_prop(google_api_mock_http):
