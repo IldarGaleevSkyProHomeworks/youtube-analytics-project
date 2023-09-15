@@ -11,7 +11,7 @@ def video_fixture():
 
 
 def test_video_title_prop(google_api_mock_http, video_fixture):
-    assert video_fixture.video_title == 'Video1 title'
+    assert video_fixture.title == 'Video1 title'
 
 
 def test_video_video_id_prop(google_api_mock_http, video_fixture):

@@ -23,7 +23,7 @@ class Video(YoutubeAPIObject):
         )
 
     def __str__(self):
-        return self.video_title
+        return self.title
 
     @property
     def video_id(self):
@@ -35,7 +35,7 @@ class Video(YoutubeAPIObject):
         return self._api_object_info_raw(Video._PART_VIDEO_INFO)["items"][0]
 
     @property
-    def video_title(self):
+    def title(self):
         """ video title """
         return self.video_info["snippet"]["title"]
 
